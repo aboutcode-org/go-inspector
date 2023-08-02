@@ -10,7 +10,7 @@ type Vendor struct {
 	Name string `json:"name"`
 }
 
-// InspectLibraries return the list with vendors
+// InspectLibraries return all 3rd party packages used by the binary
 func InspectLibraries(filepath string) ([]*gore.Package, error) {
 	f, err := gore.Open(filepath)
 	if err != nil {
@@ -24,12 +24,12 @@ func InspectLibraries(filepath string) ([]*gore.Package, error) {
 		}
 	}(f)
 
-	std2, err := f.GetVendors()
+	packages, err := f.GetVendors()
 	if err != nil {
 		return nil, err
 	}
 
-	return std2, nil
+	return packages, nil
 }
 
 func ConvertToJSONWithPosixPaths(path string) ([]byte, error) {

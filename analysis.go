@@ -12,6 +12,7 @@ package go_inspector
 import (
 	"debug/buildinfo"
 	"encoding/json"
+	"errors"
 )
 
 type Package struct {
@@ -20,10 +21,16 @@ type Package struct {
 	Sum     string `json:"sum"`
 }
 
+// InspectLibrariesFunc interface to abstract the inspection of libraries
+type InspectLibrariesFunc func(filepath string) ([]Package, error)
+
 // InspectLibraries return all 3rd party packages used by the binary
-func InspectLibraries(filepath string) ([]Package, error) {
+func (i InspectLibrariesFunc) InspectLibraries(filepath string) ([]Package, error) {
 	var packages []Package
-	bi, _ := buildinfo.ReadFile(filepath)
+	bi, err := buildinfo.ReadFile(filepath)
+	if err != nil {
+		return packages, errors.New("file not found")
+	}
 	for _, v := range bi.Deps {
 		item := Package{Path: v.Path, Version: v.Version, Sum: v.Sum}
 		packages = append(packages, item)
@@ -32,8 +39,8 @@ func InspectLibraries(filepath string) ([]Package, error) {
 }
 
 // ConvertToJSONWithPosixPaths allows to inspect libraries at the specified path, convert the file paths to POSIX format, and obtain the JSON representation of the library information with POSIX paths.
-func ConvertToJSONWithPosixPaths(path string) ([]byte, error) {
-	vendors, err := InspectLibraries(path)
+func ConvertToJSONWithPosixPaths(path string, inspector InspectLibrariesFunc) ([]byte, error) {
+	vendors, err := inspector.InspectLibraries(path)
 	if err != nil {
 		return nil, err
 	}

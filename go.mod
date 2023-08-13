@@ -2,8 +2,6 @@ module github.com/nexB/go-inspector
 
 go 1.20
 
-require github.com/goretk/gore v0.11.1
-
 require (
 	github.com/elliotchance/orderedmap v1.4.0 // indirect
 	github.com/mandiant/GoReSym v1.7.1 // indirect

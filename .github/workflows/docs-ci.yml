@@ -33,7 +33,6 @@ jobs:
       - name: Check for documentation style errors
         working-directory: ./docs
         run: ./scripts/doc8_style_check.sh
-        runs-on: ubuntu-latest
         
       - name: Set up Go
         uses: actions/setup-go@v4

@@ -23,7 +23,8 @@ func main() {
 		fmt.Printf("  print portions of its creation info data.\n")
 		return
 	}
-	jsonData, err := goinspector.ConvertToJSONWithPosixPaths(args[1])
+	mockInspect := new(goinspector.InspectLibrariesFunc)
+	jsonData, err := goinspector.ConvertToJSONWithPosixPaths(args[1], mockInspect.InspectLibraries)
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1)

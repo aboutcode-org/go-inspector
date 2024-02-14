@@ -12,6 +12,7 @@ import json
 import logging
 import os
 
+import pytest
 from commoncode import command
 from commoncode import fileutils
 from commoncode.functional import flatten
@@ -33,10 +34,17 @@ def test_goresym_with_elf():
     assert goresym_output is None
 
 
-def test_goresym_with_goresym_lin():
-    go_binary = os.path.join(TEST_DATA_DIR, "GoReSym_lin")
+@pytest.mark.parametrize(
+    "path",
+    [
+        "app_arm_lin_exe",
+        "app_arm64_mac_exe",
+        "app_arm_win_exe",
+    ],
+)
+def test_goresym_with_mini_go_app_linux(path):
+    go_binary = os.path.join(TEST_DATA_DIR, path)
     goresym_output = collect_and_parse_symbols(go_binary)
-    # write data to a file
-    with open(os.path.join(TEST_DATA_DIR, "gore_sym_output.json")) as f:
+    with open(os.path.join(TEST_DATA_DIR, f"gore_sym_{path}_output.json")) as f:
         expected_output = json.load(f)
         assert expected_output == goresym_output

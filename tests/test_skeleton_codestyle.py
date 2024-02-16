@@ -7,9 +7,9 @@
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
+import configparser
 import subprocess
 import unittest
-import configparser
 
 
 class BaseTests(unittest.TestCase):
@@ -22,7 +22,7 @@ class BaseTests(unittest.TestCase):
         if setup_cfg["metadata"]["name"] != "skeleton":
             return
 
-        args = "venv/bin/black --check -l 100 setup.py etc tests"
+        args = "venv/bin/black --check -l 100 setup.py tests "
         try:
             subprocess.check_output(args.split())
         except subprocess.CalledProcessError as e:
@@ -31,6 +31,6 @@ class BaseTests(unittest.TestCase):
             print("===========================================================")
             raise Exception(
                 "Black style check failed; please format the code using:\n"
-                "  python -m black -l 100 setup.py etc tests",
+                "  python -m black -l 100 setup.py tests",
                 e.output,
             ) from e

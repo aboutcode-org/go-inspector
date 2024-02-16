@@ -21,6 +21,7 @@ from commoncode.functional import flatten
 from plugincode.scan import ScanPlugin
 from plugincode.scan import scan_impl
 from typecode import contenttype
+from typecode.contenttype import get_type
 
 """
 Extract symbols information from source code files with ctags.
@@ -74,6 +75,17 @@ class GoSymbolScannerPlugin(ScanPlugin):
         return collect_and_parse_symbols
 
 
+def is_macho(location):
+    """
+    Return True if the file at ``location`` is macho,
+    otherwise False
+    """
+    t = get_type(location)
+    return t.filetype_file.lower().startswith("mach-o") or t.mimetype_file.lower().startswith(
+        "application/x-mach-binary"
+    )
+
+
 def is_executable_binary(location):
     """
     Return True if the file at ``location`` is an executable binary.
@@ -87,7 +99,7 @@ def is_executable_binary(location):
 
     type = contenttype.Type(location)
 
-    if not (type.is_elf or type.is_winexe):
+    if not (type.is_elf or type.is_winexe or is_macho(location=location)):
         return False
 
     return True
@@ -120,10 +132,10 @@ def collect_and_parse_symbols(location, **kwargs):
 
         with open(stdo) as syms:
             symbols = json.load(syms)
+            files = symbols.get("Files") or []
+            files.sort()
             return dict(
-                go_symbols=dict(
-                    build_info=symbols.get("BuildInfo") or [], file_paths=symbols.get("Files") or []
-                )
+                go_symbols=dict(build_info=symbols.get("BuildInfo") or {}, file_paths=files or [])
             )
 
     finally:

@@ -9,13 +9,9 @@
 #
 
 import json
-import logging
 import os
 
 import pytest
-from commoncode import command
-from commoncode import fileutils
-from commoncode.functional import flatten
 
 from src.go_inspector.plugin import collect_and_parse_symbols
 
@@ -24,22 +20,22 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 
 def test_goresym_with_windows_exe():
     go_binary = os.path.join(TEST_DATA_DIR, "windows.exe")
-    goresym_output = collect_and_parse_symbols(go_binary)
-    assert goresym_output is None
+    with pytest.raises(Exception) as e:
+        collect_and_parse_symbols(go_binary)
 
 
 def test_goresym_with_elf():
     go_binary = os.path.join(TEST_DATA_DIR, "arm_gentoo_elf")
-    goresym_output = collect_and_parse_symbols(go_binary)
-    assert goresym_output is None
+    with pytest.raises(Exception) as e:
+        collect_and_parse_symbols(go_binary)
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        "app_arm_lin_exe",
-        "app_arm64_mac_exe",
-        "app_arm_win_exe",
+        "app_lin_exe",
+        "app_mac_exe",
+        "app_win_exe",
     ],
 )
 def test_goresym_with_mini_go_app_linux(path):

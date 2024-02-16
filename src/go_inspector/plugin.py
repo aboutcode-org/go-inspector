@@ -17,7 +17,6 @@ from commoncode import command
 from commoncode import fileutils
 from commoncode.cliutils import SCAN_GROUP
 from commoncode.cliutils import PluggableCommandLineOption
-from commoncode.functional import flatten
 from plugincode.scan import ScanPlugin
 from plugincode.scan import scan_impl
 from typecode import contenttype
@@ -127,7 +126,6 @@ def collect_and_parse_symbols(location, **kwargs):
         )
 
         if rc != 0:
-            print("Error running goresym ", open(err).read())
             raise Exception(open(err).read())
 
         with open(stdo) as syms:

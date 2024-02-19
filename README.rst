@@ -6,3 +6,11 @@ Go-Inspector
 - then change it to executable  ```chmod u+x src/go_inspector/bin/GoReSym_lin```
 - Install requirements and dependencies using ```make dev```
 - Use ```scancode --json-pp - --go-symbol <PATH> --verbose``` to get debug symbols.
+
+
+How to generate test binaries
+============================
+
+- Run `go tool dist list` to get all possible pairs of OSes and arches to compile the binary.
+- Then use a OS/arch pair like this ``GOOS=<OS> GOARCH=<arch> go build -o ./tests/data/app_exe ./tests/data/main.go``
+  to get compiled binary.

@@ -104,13 +104,15 @@ def is_executable_binary(location):
     return True
 
 
-def collect_and_parse_symbols(location, **kwargs):
+
+def collect_and_parse_symbols(location, check_type=True, **kwargs):
     """
     Run GoReSym and return a mapping of symbols of interest for the Go binary file
     at ``location``.
+    If ``check_type`` is True, the file is checked.
     """
-    if not is_executable_binary(location):
-        print("Not an executable binary")
+    if check_type and not is_executable_binary(location):
+        # print("Not an executable binary")
         return
 
     goresym_args = ["-p", location]

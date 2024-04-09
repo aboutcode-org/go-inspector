@@ -86,9 +86,9 @@ def is_executable_binary(location):
     if not os.path.isfile(location):
         return False
 
-    type = contenttype.Type(location)
+    typ = contenttype.Type(location)
 
-    if not (type.is_elf or type.is_winexe or is_macho(location=location)):
+    if not (typ.is_elf or typ.is_winexe or is_macho(location=location)):
         return False
 
     return True
@@ -96,8 +96,9 @@ def is_executable_binary(location):
 
 def collect_and_parse_symbols(location, check_type=True, **kwargs):
     """
-    Run GoReSym and return a mapping of symbols of interest for the Go binary file
-    at ``location``.  If ``check_type`` is True, the file is checked.
+    Return a mapping of Go symbols of interest for the Go binary file at ``location``.
+    If ``check_type`` is True, the file is checked and None is returned if file is not an
+    executable binary. Raise exceptions on errors.
     """
     if check_type and not is_executable_binary(location):
         return
@@ -121,9 +122,9 @@ def collect_and_parse_symbols(location, check_type=True, **kwargs):
             symbols = json.load(syms)
             files = symbols.get("Files") or []
             files.sort()
-            return dict(
-                go_symbols=dict(build_info=symbols.get("BuildInfo") or {}, file_paths=files or [])
-            )
+            build_info = symbols.get("BuildInfo") or {}
+
+            return dict(go_symbols=dict(build_info=build_info, file_paths=files))
 
     finally:
         fileutils.delete(goresym_temp_dir)

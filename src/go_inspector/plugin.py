@@ -4,7 +4,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/scancode-plugins for support or download.
+# See https://github.com/nexB/go-inspector for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -23,22 +23,13 @@ from typecode import contenttype
 from typecode.contenttype import get_type
 
 """
-Extract symbols information from source code files with ctags.
+Extract symbols information from Go binaries using GoReSym.
 """
 LOG = logging.getLogger(__name__)
 
 from os.path import abspath
 from os.path import dirname
 from os.path import join
-
-"""
-https://github.com/mandiant/GoReSym/archive/refs/tags/v2.6.4.tar.gz
-Download this zip at:
-https://github.com/mandiant/GoReSym/releases/download/v2.6.4/GoReSym.zip
-Extract goresym for linux
-And then change it to executable 
-chmod u+x src/go_inspector/bin/GoReSym_lin
-"""
 
 
 def get_goresym_location():
@@ -76,8 +67,7 @@ class GoSymbolScannerPlugin(ScanPlugin):
 
 def is_macho(location):
     """
-    Return True if the file at ``location`` is macho,
-    otherwise False
+    Return True if the file at ``location`` is macho, otherwise False.
     """
     t = get_type(location)
     return t.filetype_file.lower().startswith("mach-o") or t.mimetype_file.lower().startswith(
@@ -104,15 +94,12 @@ def is_executable_binary(location):
     return True
 
 
-
 def collect_and_parse_symbols(location, check_type=True, **kwargs):
     """
     Run GoReSym and return a mapping of symbols of interest for the Go binary file
-    at ``location``.
-    If ``check_type`` is True, the file is checked.
+    at ``location``.  If ``check_type`` is True, the file is checked.
     """
     if check_type and not is_executable_binary(location):
-        # print("Not an executable binary")
         return
 
     goresym_args = ["-p", location]

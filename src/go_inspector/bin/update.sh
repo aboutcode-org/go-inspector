@@ -24,3 +24,5 @@ mv goresymzip/GoReSym_lin .
 chmod u+x GoReSym_lin
 
 rm -rf GoReSym.zip goresymzip
+
+# finally run a binary analysis on this GoReSym executable and update the ABOUT files accordingly 

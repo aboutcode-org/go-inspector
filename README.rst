@@ -61,15 +61,15 @@ This project is funded in part through:
 
 .. |nlnet| image:: https://nlnet.nl/logo/banner.png
     :target: https://nlnet.nl
-    :width: 20%
+    :height: 50
     :alt: NLnet foundation logo
 
 .. |ngi0entrust| image:: https://nlnet.nl/image/logos/NGI0_tag.svg
     :target: https://nlnet.nl/entrust
-    :width: 20%
+    :height: 50
     :alt: NGI Zero Logo
 
 .. |nexb| image:: https://nexb.com/wp-content/uploads/2022/04/nexB.svg
     :target: https://nexb.com
-    :width: 20%
+    :height: 30
     :alt: nexB logo

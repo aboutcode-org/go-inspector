@@ -2,7 +2,7 @@ go-inspector
 ================================
 
 go-inspector is a utility to extract dependencies and symbols from Go binaries.
-It is desigend to work as a ScanCode Toolkit plugin.
+It is designed to work as a ScanCode Toolkit plugin and integrated in ScanCode.io
 
 To install and use:
 
@@ -13,7 +13,7 @@ The JSON output will contain various dependencies and symbols found in Go binari
 
 
 - License: Apache-2.0 AND MIT AND BSD-3-Clause WITH LicenRef-scancode-google-patent-license-golang
-- Copyright (c) nexB Inc., Mandiant, The Go Authors, Elliot Chance and others
+- Copyright (c) nexB Inc., Mandiant, The Go Authors, Elliot Chance and others.
 - Homepage: https://github.com/nexB/go-inspector/
 
 See the src/go_inspector/bin for detailed license and credits for bundled third-party packages.

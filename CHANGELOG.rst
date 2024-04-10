@@ -1,17 +1,21 @@
 Changelog
 =========
 
-
-v0.1.0 (8th April 2024)
+v0.2.1 (2024-04-10)
 ------------------------
 
-- Add goresym support in go-inspector.
+- Fix minor readme typo
 
 
-
-v0.2.0 (9th April 2024)
+v0.2.0 (2024-04-09)
 ------------------------
 
 - Add missing ABOUT file and license for goresym.
 - Bump to version GoReSym 2.7.2
 - Add support for dependencies and build info
+
+
+v0.1.0 (2024-04-08)
+------------------------
+
+- Add goresym support in go-inspector.

@@ -10,7 +10,10 @@
 
 import os
 
+from pathlib import Path
+
 import pytest
+
 from commoncode.testcase import FileDrivenTesting
 from scancode.cli_test_utils import check_json
 from scancode.cli_test_utils import check_json_scan
@@ -46,16 +49,14 @@ def test_collect_and_parse_symbols_with_plain_elf():
 )
 def test_collect_and_parse_symbols_with_mini_go_app_linux(exe_path):
     go_binary = test_env.get_test_loc(exe_path)
-    expected = f"{go_binary}-goresym.json"
+    expected = f"{go_binary}-collect_and_parse_symbols.json"
     results = collect_and_parse_symbols(go_binary)
     check_json(expected, results, regen=REGEN_TEST_FIXTURES)
 
 
 def test_collect_and_parse_symbols_with_large_go_app_linux():
-    from pathlib import Path
-
     go_binary = Path(test_env.test_data_dir).parent.parent / "src/go_inspector/bin/GoReSym_lin"
-    expected = test_env.get_test_loc(f"GoReSym_lin-goresym.json", must_exist=False)
+    expected = test_env.get_test_loc(f"GoReSym_lin-collect_and_parse_symbols.json", must_exist=False)
     results = collect_and_parse_symbols(go_binary)
     check_json(expected, results, regen=REGEN_TEST_FIXTURES)
 

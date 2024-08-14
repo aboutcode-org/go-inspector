@@ -22,16 +22,16 @@ def get_nsname(purl):
 
 def repository_homepage_url(purl):
     nsname = get_nsname(purl)
-    url = f'https://pkg.go.dev/{nsname}'
+    url = f"https://pkg.go.dev/{nsname}"
     if purl.version:
-        url = f'{url}@version'
+        url = f"{url}@version"
     return url
 
 
 def get_vcs_segments(purl):
     nsname = get_nsname(purl)
     if nsname.startswith(("github", "gitlab")):
-        segments = nsname.strip('/').split('/')
+        segments = nsname.strip("/").split("/")
         if len(segments) >= 3:
             typ = segments[0]
             ns = segments[1]
@@ -44,10 +44,10 @@ def get_vcs_based_urls(purl):
     tnsn = get_vcs_segments(purl)
     if tnsn:
         typ, ns, nm = tnsn
-        urls["vcs_url"] = f'git+https://{typ}.com/{ns}/{nm}.git'
-        urls["homepage_url"] = f'https://{typ}.com/{ns}/{nm}'
-        urls["bug_tracking_url"] = f'https://{typ}.com/{ns}/{nm}/issues'
-        urls["code_view_url"] = f'https://{typ}.com/{ns}/{nm}'
+        urls["vcs_url"] = f"git+https://{typ}.com/{ns}/{nm}.git"
+        urls["homepage_url"] = f"https://{typ}.com/{ns}/{nm}"
+        urls["bug_tracking_url"] = f"https://{typ}.com/{ns}/{nm}/issues"
+        urls["code_view_url"] = f"https://{typ}.com/{ns}/{nm}"
 
     return urls
 
@@ -99,7 +99,7 @@ def extract_commit(version):
     'ae1c48aa8615'
     """
     if is_pseudo_version(version):
-        return version.split('-')[-1]
+        return version.split("-")[-1]
 
 
 def repository_download_url(purl):
@@ -147,6 +147,51 @@ def create_pseudo_version(vcs_commit, vcs_time):
     return pseudo_version
 
 
+def parse_version(vers):
+    """
+    Return a tuple of (major, minor, patch) numeric version numbers.
+    Return None if this is not a version or not a semver version
+
+    Ignores rc and betas.  This is a semver once you remove the go prefix.
+
+    For example:
+    >>> parse_version("go1.0")
+    (1, 0, 0)
+    >>> parse_version("go1")
+    (1, 0, 0)
+    >>> parse_version("go1.22.2")
+    (1, 22, 2)
+    >>> parse_version("go2.22.2")
+    (2, 22, 2)
+
+    >>> parse_version("go1.0.0rc2")
+    >>> parse_version("1")
+    """
+    if not isinstance(vers, str):
+        return
+
+    _, go, version = vers.strip().partition("go")
+    if go != "go":
+        return
+
+    if not version.replace(".", "").isdigit():
+        return
+
+    segments = version.split(".")
+    l = len(segments)
+    minor = patch = 0
+    if l == 1:
+        major = segments[0]
+    elif l == 2:
+        major, minor = segments
+    elif l == 3:
+        major, minor, patch = segments
+    else:
+        return
+
+    return int(major), int(minor), int(patch)
+
+
 def get_urls(purl):
     """
     Return a mapping of URLs and related PURLs PackageData attributes inferred for this Go module purl.
@@ -181,4 +226,3 @@ def escape_path(path: str) -> str:
         else:
             escaped_path += c
     return escaped_path
-

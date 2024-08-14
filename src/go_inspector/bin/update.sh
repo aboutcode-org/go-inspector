@@ -22,7 +22,9 @@ sha256sum -c GoReSym.zip.sums
 unzip -qd goresymzip GoReSym.zip
 mv goresymzip/GoReSym_lin .
 chmod u+x GoReSym_lin
+strip GoReSym_lin
 
 rm -rf GoReSym.zip goresymzip
 
-# finally run a binary analysis on this GoReSym executable and update the ABOUT files accordingly 
+# finally run a binary analysis on this GoReSym executable, diff and update the ABOUT files accordingly 
+./GoReSym_lin -p -no-functions ./GoReSym_lin > GoReSym_lin.results.json

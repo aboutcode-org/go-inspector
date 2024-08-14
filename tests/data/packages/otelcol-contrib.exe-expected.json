@@ -8746,7 +8746,7 @@
         }
       }
     ],
-    "repository_homepage_url": "https://pkg.go.dev/github.com/open-telemetry/opentelemetry-collector-releases/contrib@version",
+    "repository_homepage_url": "https://pkg.go.dev/github.com/open-telemetry/opentelemetry-collector-releases/contrib@b4481e4e6a4dde46263ebd676cc844c7e648ef84",
     "repository_download_url": "https://proxy.golang.org/cloud.google.com/go/monitoring/@v/v1.17.0.zip",
     "api_data_url": null,
     "datasource_id": "golang_binary",

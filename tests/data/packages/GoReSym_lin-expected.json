@@ -166,7 +166,7 @@
         }
       }
     ],
-    "repository_homepage_url": "https://pkg.go.dev/github.com/mandiant/GoReSym@version",
+    "repository_homepage_url": "https://pkg.go.dev/github.com/mandiant/GoReSym@e3bc1884ad229b47bf87b50ef31c9972bb135265",
     "repository_download_url": "https://proxy.golang.org/cloud.google.com/go/monitoring/@v/v1.17.0.zip",
     "api_data_url": null,
     "datasource_id": "golang_binary",

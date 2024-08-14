@@ -23,8 +23,8 @@ def get_nsname(purl):
 def repository_homepage_url(purl):
     nsname = get_nsname(purl)
     url = f"https://pkg.go.dev/{nsname}"
-    if purl.version:
-        url = f"{url}@version"
+    if version := purl.version:
+        url = f"{url}@{version}"
     return url
 
 

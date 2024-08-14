@@ -2390,7 +2390,7 @@
         }
       }
     ],
-    "repository_homepage_url": "https://pkg.go.dev/github.com/pingcap/tidb@version",
+    "repository_homepage_url": "https://pkg.go.dev/github.com/pingcap/tidb@7d16cc79e81bbf573124df3fd9351c26963f3e70",
     "repository_download_url": "https://proxy.golang.org/cloud.google.com/go/monitoring/@v/v1.17.0.zip",
     "api_data_url": null,
     "datasource_id": "golang_binary",

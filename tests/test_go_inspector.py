@@ -10,20 +10,18 @@
 
 import json
 import os
-
 from pathlib import Path
 
 import pytest
-
 from commoncode.testcase import FileDrivenTesting
 from scancode.cli_test_utils import check_json
 from scancode.cli_test_utils import check_json_scan
 from scancode.cli_test_utils import run_scan_click
 from scancode_config import REGEN_TEST_FIXTURES
 
+from go_inspector.binary import _collect_go_package_from_data
 from go_inspector.binary import collect_and_parse_symbols
 from go_inspector.binary import collect_go_package
-from go_inspector.binary import _collect_go_package_from_data
 
 test_env = FileDrivenTesting()
 test_env.test_data_dir = os.path.join(os.path.dirname(__file__), "data")
@@ -59,7 +57,9 @@ def test_collect_and_parse_symbols_with_mini_go_app_linux(exe_path):
 
 def test_collect_and_parse_symbols_with_large_go_app_linux():
     go_binary = Path(test_env.test_data_dir).parent.parent / "src/go_inspector/bin/GoReSym_lin"
-    expected = test_env.get_test_loc(f"GoReSym_lin-collect_and_parse_symbols.json", must_exist=False)
+    expected = test_env.get_test_loc(
+        f"GoReSym_lin-collect_and_parse_symbols.json", must_exist=False
+    )
     results = collect_and_parse_symbols(go_binary)
     check_json(expected, results, regen=REGEN_TEST_FIXTURES)
 
@@ -86,8 +86,7 @@ def test_collect_go_package_from_data_with_large_go_app_linux():
     expected = test_env.get_test_loc("packages/otelcol-contrib.exe-expected.json", must_exist=False)
     results = [
         pd.to_dict()
-        for pd in
-        _collect_go_package_from_data(go_data=go_binary_data, location="some/fake/loc")
+        for pd in _collect_go_package_from_data(go_data=go_binary_data, location="some/fake/loc")
     ]
     check_json(expected, results, regen=REGEN_TEST_FIXTURES)
 
@@ -98,8 +97,6 @@ def test_collect_go_package_from_data_with_large_go_app_linux2():
     expected = test_env.get_test_loc("packages/tidb-server-expected.json", must_exist=False)
     results = [
         pd.to_dict()
-        for pd in
-        _collect_go_package_from_data(go_data=go_binary_data, location="some/fake/loc")
+        for pd in _collect_go_package_from_data(go_data=go_binary_data, location="some/fake/loc")
     ]
     check_json(expected, results, regen=REGEN_TEST_FIXTURES)
-

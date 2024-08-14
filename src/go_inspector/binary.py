@@ -11,7 +11,6 @@
 import json
 import logging
 import os
-
 from os.path import abspath
 from os.path import dirname
 from os.path import join
@@ -244,9 +243,8 @@ def is_macho(location):
     Return True if the file at ``location`` is in macOS/Darwin's Mach-O format, otherwise False.
     """
     t = get_type(location)
-    return (
-        t.filetype_file.lower().startswith("mach-o")
-        or t.mimetype_file.lower().startswith("application/x-mach-binary")
+    return t.filetype_file.lower().startswith("mach-o") or t.mimetype_file.lower().startswith(
+        "application/x-mach-binary"
     )
 
 
@@ -305,7 +303,8 @@ def is_fake_path(path):
     """
     fake_paths = (
         # GCC intrinsics
-        "<built-in>", "<builtin>",
+        "<built-in>",
+        "<builtin>",
         # seen in Go and C++
         "<artificial>",
         # seen in Go
@@ -337,7 +336,7 @@ class GoModule(NamedTuple):
     path: str
     version: str
     go_sum: str
-    replacing: 'GoModule'
+    replacing: "GoModule"
 
     def to_dict(self):
         return dict(
@@ -375,7 +374,9 @@ class GoModule(NamedTuple):
             replaced_path = path
             replaced_version = go_data.get("Version") or ""
             replaced_sum = go_data.get("Sum") or None
-            replacing = GoModule(path=replaced_path, version=replaced_version, go_sum=replaced_sum, replacing=None)
+            replacing = GoModule(
+                path=replaced_path, version=replaced_version, go_sum=replaced_sum, replacing=None
+            )
 
             path = replaced_by.get("Path") or ""
             version = replaced_by.get("Version") or ""
@@ -401,7 +402,7 @@ class GoModule(NamedTuple):
         return self.package_url().to_string()
 
     def package_url(self):
-        return PackageURL(type='golang', name=self.path, version=self.version)
+        return PackageURL(type="golang", name=self.path, version=self.version)
 
     def as_dependent_package(self):
         """
@@ -415,7 +416,7 @@ class GoModule(NamedTuple):
             purl=self.purl(),
             extracted_requirement=self.version,
             # TODO: this should be require!!
-            scope='dependency',
+            scope="dependency",
             is_runtime=True,
             is_optional=False,
             is_resolved=True,
@@ -455,7 +456,7 @@ def collect_commit_from_ldflags(ldflags):
         -X github.com/NVIDIA/k8s-device-plugin/internal/info.gitCommit=a044adb83781f2e672e1436d51dbd0f9bf8828d8
     """
     for item in (ldflags or "").split():
-        if "gitCommit="in item:
+        if "gitCommit=" in item:
             path, _, commit = item.rpartition("gitCommit=")
             return path, commit
 
@@ -468,6 +469,7 @@ def get_go_binary_handler():
         ScanCode handler for Go binary. We use the standard assemble AND this is "activated" with a
         conditional import in ScanCode Toolkit packagedcode.__init__.py
         """
+
         datasource_id = "golang_binary"
         # filetypes = tuple()
         default_package_type = "golang"

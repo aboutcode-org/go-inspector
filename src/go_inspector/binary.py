@@ -104,15 +104,30 @@ def collect_go_package(location, **kwargs):
     return _collect_go_package_from_data(go_data, location=location)
 
 
+def get_build_info(go_data):
+    if not go_data or not "BuildInfo" in go_data:
+        return
+
+    build_info = go_data["BuildInfo"]
+    if (
+        not build_info.get("GoVersion")
+        and not build_info.get("Path")
+        and not build_info.get("Settings")
+    ):
+        return
+    main = build_info.get("Main") or {}
+    if not main.get("Path") and not main.get("Version") and not main.get("Sum"):
+        return
+    return build_info
+
+
 def _collect_go_package_from_data(go_data, location, **kwargs):
     """
     Yield a Go PackageData found in the Go binary file ``go_data`` mapping extracted from
     ``location`` string. Raise exceptions on errors.
     """
-    if not go_data:
-        return
-
-    if not (build_info := go_data.get("BuildInfo")):
+    build_info = get_build_info(go_data)
+    if not build_info:
         return
 
     package_data = get_main_package(build_info=build_info, location=location)
@@ -172,7 +187,7 @@ def get_main_package(build_info, location):
             extra_data=extra_data,
         )
         purl = PackageURL(type="generic", name=pathloc, qualifiers=dict(path=location))
-        pkg.set_purl(package_url=purl())
+        pkg.set_purl(package_url=purl)
 
     elif main_module:
         pkg = main_module.as_package_data()

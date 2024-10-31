@@ -434,7 +434,7 @@ class GoModule(NamedTuple):
             scope="dependency",
             is_runtime=True,
             is_optional=False,
-            is_resolved=True,
+            is_pinned=True,
             extra_data=extra_data,
         )
 

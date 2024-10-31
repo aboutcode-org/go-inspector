@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v0.4.0 (2024-10-31)
+-------------------
+
+- Use latest scancode-toolkit dependency model from v32.3.0
+  Here ``is_resolved`` was renamed to ``is_pinned`` in DependentPackage
+- Drop python 3.8 and support python 3.13
+
 v0.3.1 (2024-09-06)
 ------------------------
 

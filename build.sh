@@ -6,6 +6,14 @@
 set -e
 
 base_name=GoReSym-3.0.1
+GOOS=linux
+
+
+if [ $(uname -m) == 'aarch64' ]; then
+    GOARCH="arm64"
+else
+	GOARCH="amd64"
+fi
 
 cd lib-src/
 

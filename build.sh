@@ -25,7 +25,7 @@ cd $base_name/
 
 echo Build GoReSym
 go build && mv GoReSym GoReSym_lin
-strip GoReSym_lin
+# strip GoReSym_lin
 cp GoReSym_lin ../../src/go_inspector/bin/
 cd ..
 echo Done building GoReSym

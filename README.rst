@@ -11,6 +11,8 @@ To install and use:
 
 The JSON output will contain various dependencies and symbols found in Go binaries if any.
 
+A Go compiler is required to build go-inspector. Install Go from
+https://go.dev/doc/install or from a package manager.
 
 - License: Apache-2.0 AND MIT AND BSD-3-Clause WITH LicenRef-scancode-google-patent-license-golang
 - Copyright (c) nexB Inc., AboutCode, Mandiant, The Go Authors, Elliot Chance and others.
@@ -50,19 +52,19 @@ This project is funded, supported and sponsored by:
 
 - Generous support and contributions from users like you!
 - the European Commission NGI programme
-- the NLnet Foundation 
+- the NLnet Foundation
 - the Swiss State Secretariat for Education, Research and Innovation (SERI)
 - Google, including the Google Summer of Code and the Google Seasons of Doc programmes
 - Mercedes-Benz Group
 - Microsoft and Microsoft Azure
 - AboutCode ASBL
-- nexB Inc. 
+- nexB Inc.
 
 
 
-|europa|   |dgconnect| 
+|europa|   |dgconnect|
 
-|ngi|   |nlnet|   
+|ngi|   |nlnet|
 
 |aboutcode|  |nexb|
 
@@ -70,7 +72,7 @@ This project is funded, supported and sponsored by:
 
 This project was funded through the NGI0 Entrust Fund, a fund established by NLnet with financial
 support from the European Commission's Next Generation Internet programme, under the aegis of DG
-Communications Networks, Content and Technology under grant agreement No 101069594. 
+Communications Networks, Content and Technology under grant agreement No 101069594.
 
 |ngizeroentrust| https://nlnet.nl/project/Back2source/
 
@@ -84,7 +86,7 @@ Communications Networks, Content and Technology under grant agreement No 1010929
 
 This project was funded through the NGI0 Entrust Fund, a fund established by NLnet with financial
 support from the European Commission's Next Generation Internet programme, under the aegis of DG
-Communications Networks, Content and Technology under grant agreement No 101069594. 
+Communications Networks, Content and Technology under grant agreement No 101069594.
 
 |ngizeroentrust| https://nlnet.nl/project/purl2all/
 

@@ -23,7 +23,7 @@ class BuildNative(distutils_build):
 
 class DevelopNative(setuptools_develop):
     def run(self):
-        self.execute(run_rpm_build, (), msg="Building develop native code")
+        self.execute(run_native_build, (), msg="Building develop native code")
         setuptools_develop.run(self)
 
 

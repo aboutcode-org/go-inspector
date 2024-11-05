@@ -3,7 +3,7 @@
     "type": "golang",
     "namespace": "github.com/mandiant",
     "name": "GoReSym",
-    "version": "e3bc1884ad229b47bf87b50ef31c9972bb135265",
+    "version": "583e8aaa51f3bd1eb68b69e761e094596d6bb191",
     "qualifiers": {},
     "subpath": "",
     "primary_language": "Go",
@@ -32,14 +32,14 @@
     "extracted_license_statement": null,
     "notice_text": null,
     "source_packages": [
-      "pkg:github/mandiant/goresym@e3bc1884ad229b47bf87b50ef31c9972bb135265"
+      "pkg:github/mandiant/goresym@583e8aaa51f3bd1eb68b69e761e094596d6bb191"
     ],
     "file_references": [],
     "is_private": false,
     "is_virtual": false,
     "extra_data": {
       "build_info": {
-        "GoVersion": "go1.22.2",
+        "GoVersion": "go1.23.2",
         "Path": "github.com/mandiant/GoReSym",
         "Main": {
           "Path": "github.com/mandiant/GoReSym",
@@ -58,7 +58,7 @@
           },
           {
             "Key": "DefaultGODEBUG",
-            "Value": "httplaxcontentlength=1,httpmuxgo121=1,tls10server=1,tlsrsakex=1,tlsunsafeekm=1"
+            "Value": "asynctimerchan=1,gotypesalias=0,httplaxcontentlength=1,httpmuxgo121=1,httpservecontentkeepheaders=1,tls10server=1,tls3des=1,tlskyber=0,tlsrsakex=1,tlsunsafeekm=1,winreadlinkvolume=0,winsymlink=0,x509keypairleaf=0,x509negativeserial=1"
           },
           {
             "Key": "CGO_ENABLED",
@@ -98,11 +98,11 @@
           },
           {
             "Key": "vcs.revision",
-            "Value": "e3bc1884ad229b47bf87b50ef31c9972bb135265"
+            "Value": "583e8aaa51f3bd1eb68b69e761e094596d6bb191"
           },
           {
             "Key": "vcs.time",
-            "Value": "2024-08-02T14:26:59Z"
+            "Value": "2024-11-05T19:28:00Z"
           },
           {
             "Key": "vcs.modified",
@@ -110,7 +110,7 @@
           }
         ]
       },
-      "go_runtime_purl": "pkg:github/golang/go@go1.22.2"
+      "go_runtime_purl": "pkg:github/golang/go@go1.23.2"
     },
     "dependencies": [
       {
@@ -166,10 +166,10 @@
         }
       }
     ],
-    "repository_homepage_url": "https://pkg.go.dev/github.com/mandiant/GoReSym@e3bc1884ad229b47bf87b50ef31c9972bb135265",
+    "repository_homepage_url": "https://pkg.go.dev/github.com/mandiant/GoReSym@583e8aaa51f3bd1eb68b69e761e094596d6bb191",
     "repository_download_url": "https://proxy.golang.org/cloud.google.com/go/monitoring/@v/v1.17.0.zip",
     "api_data_url": null,
     "datasource_id": "golang_binary",
-    "purl": "pkg:golang/github.com/mandiant/GoReSym@e3bc1884ad229b47bf87b50ef31c9972bb135265"
+    "purl": "pkg:golang/github.com/mandiant/GoReSym@583e8aaa51f3bd1eb68b69e761e094596d6bb191"
   }
 ]

@@ -5,6 +5,7 @@ v0.5.0 (2024-11-05)
 -------------------
 
 - Build GoReSym from source instead of vendoring the binary.
+- Support building go-inspector for Linux aarch64/arm64 platform.
 - Update GoReSym to v3.0.1
 
 v0.4.0 (2024-10-31)

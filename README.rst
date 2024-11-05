@@ -18,7 +18,7 @@ https://go.dev/doc/install or from a package manager.
 - Copyright (c) nexB Inc., AboutCode, Mandiant, The Go Authors, Elliot Chance and others.
 - Homepage: https://github.com/aboutcode-org/go-inspector
 
-See the src/go_inspector/bin for detailed license and credits for bundled third-party packages.
+See the libsrc/ directory for detailed license and credits for bundled third-party packages.
 
 
 Development
@@ -33,6 +33,9 @@ Testing:
 - To regen test fixtures: ``SCANCODE_REGEN_TEST_FIXTURES=yes pytest -vvs``
 - To update the bundled GoReSym, see src/bin/update.sh
 
+Building:
+
+- Ensure ``make dev`` has been run, then run ``make build``
 
 How to re-generate test binaries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -30,10 +30,10 @@ def repository_homepage_url(purl):
 
 def get_vcs_segments(purl):
     nsname = get_nsname(purl)
-    if nsname.startswith(("github", "gitlab")):
+    if nsname.startswith(("github.com", "gitlab.com")):
         segments = nsname.strip("/").split("/")
         if len(segments) >= 3:
-            typ = segments[0]
+            typ, _, _ = segments[0].partition(".")
             ns = segments[1]
             nm = segments[2]
             return typ, ns, nm
@@ -59,8 +59,6 @@ def source_purl(purl):
     tnsn = get_vcs_segments(purl)
     if tnsn:
         typ, ns, nm = tnsn
-        # strip trailing .com from github.com
-        typ, _, _ = typ.partition(".")
         vrs = purl.version
         # only use commit for pseudo semver versions
         if vrs and (commit := extract_commit(vrs)):

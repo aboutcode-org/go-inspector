@@ -13,7 +13,6 @@ Utilities to filter Go standard library packages.
 See also https://github.com/golang/pkgsite/blob/87c415249864b5860acab46939f96affd52275f4/internal/stdlib/stdlib.go#L5
 """
 
-
 # Top level directories in go:
 STANDARDS = {
     "archive",
